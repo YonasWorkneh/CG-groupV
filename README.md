@@ -3,6 +3,7 @@
 This is a simple game that we made with canvas, css and javascript. Where mario is on anohter mission, grabbing as many coin as he can while avoiding the walls.
 
 # Live demo
+https://yonasworkneh.github.io/Cg-Game/
 
 # Screen shot
 
