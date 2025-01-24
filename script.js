@@ -348,6 +348,10 @@ window.onload = () => {
   const playButton = document.getElementById("play");
   playButton.addEventListener("click", () => {
     // audio.pause();
+    document.getElementById("displayTutorial").classList.remove("hidden");
+    setTimeout(() => {
+      document.getElementById("displayTutorial").classList.add("hidden");
+    }, 1000);
     document.querySelector(".canvas-container").classList.remove("hidden");
     document.querySelector(".main").classList.add("hidden");
     playGame();
