@@ -5,4 +5,4 @@ This is a simple game that we made with canvas, css and javascript. Where mario 
 
 # Screen shot
 
-<img src="images/screenshot.png" alt="Screenshot of the game" width="200" height="200" />
+<img src="images/screen-demo" alt="Screenshot of the game" width="200" height="200" />
