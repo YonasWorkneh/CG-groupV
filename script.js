@@ -3,6 +3,11 @@
 const canvas = document.getElementById("pixelCanvas");
 const ctx = canvas.getContext("2d");
 
+// globals
+let music = true;
+let vol = true;
+let speed = 500; // based on user preference
+
 // Set canvas to full screen
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -153,7 +158,6 @@ window.onload = () => {
 
     // player speed
     let t = Date.now();
-    let speed = 500;
 
     // coin, size, position
     let coinSize = 50;
@@ -172,17 +176,16 @@ window.onload = () => {
       budgieSound.play();
 
       natureSound.loop = true;
-      natureSound.play();
+      if (music) natureSound.play();
       chillMusic.loop = true;
-      chillMusic.play();
+      if (music) chillMusic.play();
     }
-
-    budgieSound.play();
+    if (vol) budgieSound.play();
 
     natureSound.loop = true;
-    natureSound.play();
+    if (music) natureSound.play();
     chillMusic.loop = true;
-    chillMusic.play();
+    if (music) chillMusic.play();
 
     //////// HANDLE USER INPUT FOR PLAYER DIRECTION ////////
     let direction = "stop";
@@ -293,7 +296,7 @@ window.onload = () => {
         // display score
         displayScore.innerHTML = "Score: " + score;
         // play sound
-        coinSound.play();
+        if (vol) coinSound.play();
         // relocate new coin
         coinX = Math.random() * (canvasSize - coinSize);
         coinY = Math.random() * (canvasSize - coinSize);
@@ -307,7 +310,6 @@ window.onload = () => {
         // clear canvas
         context.clearRect(0, 0, canvasSize, canvasSize);
         const highScore = localStorage.getItem("highScore") || 0;
-        console.log(highScore);
         if (score > +highScore) localStorage.setItem("highScore", score);
         console.log(+highScore);
         document.querySelector("#highScore").textContent = `High score: ${
@@ -316,7 +318,7 @@ window.onload = () => {
         // display game over
         gameOver.style.display = "flex";
         // play bugie game over sound
-        gameOverSound.play();
+        if (vol) gameOverSound.play();
         // stop background sounds
         natureSound.pause();
         chillMusic.pause();
@@ -351,8 +353,8 @@ window.onload = () => {
     document.getElementById("displayTutorial").classList.remove("hidden");
     setTimeout(() => {
       document.getElementById("displayTutorial").classList.add("hidden");
-    }, 1000);
-    document.querySelector(".canvas-container").classList.remove("hidden");
+    }, 2000);
+    document.querySelector("#game").classList.remove("hidden");
     document.querySelector(".main").classList.add("hidden");
     playGame();
   });
@@ -365,7 +367,7 @@ window.onload = () => {
   const main = document.getElementById("menu");
   main.addEventListener("click", () => {
     // audio.play();
-    document.querySelector(".canvas-container").classList.add("hidden");
+    document.querySelector("#game").classList.add("hidden");
     document.querySelector(".main").classList.remove("hidden");
   });
 
@@ -376,3 +378,40 @@ window.onload = () => {
     }
   });
 };
+
+// handle uer prefrences
+
+const optionBtn = document.querySelector(".option");
+const back = document.querySelector(".back");
+back.addEventListener("click", function () {
+  document.querySelector(".mainopt").classList.remove("hidden");
+  document.querySelector(".detail").classList.add("hidden");
+});
+optionBtn.addEventListener("click", function () {
+  document.querySelector(".mainopt").classList.add("hidden");
+  document.querySelector(".detail").classList.remove("hidden");
+});
+
+// music button
+
+const musicBtn = document.querySelector(".music");
+const soundBtn = document.querySelector(".sound");
+
+musicBtn.querySelector("input").addEventListener("click", function (e) {
+  const checked = e.currentTarget.checked;
+  if (checked) music = true;
+  else music = false;
+});
+
+soundBtn.querySelector("input").addEventListener("click", function (e) {
+  const checked = e.currentTarget.checked;
+  if (checked) music = true;
+  else vol = false;
+});
+
+document.querySelector("select").addEventListener("change", function (e) {
+  const value = e.target.value;
+  if (value === "easy") speed = 500;
+  if (value === "medium") speed = 800;
+  if (value === "hard") speed = 1200;
+});

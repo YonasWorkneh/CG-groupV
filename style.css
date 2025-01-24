@@ -77,7 +77,8 @@ body {
   place-items: center;
   background-color: #0d0b0bad;
   border-radius: 20px;
-  padding: 20px 60px;
+  padding: 50px;
+  border: 1px solid #222;
   /* animation: fadeIn 2s ease-in-out; */
 }
 .options h1 {
@@ -95,9 +96,10 @@ body {
   height: 10rem;
 }
 .mainopt button,
-.btns button {
+.btns button,
+.detail button {
   display: block;
-  background: #ea3f3f2f;
+  background: rgba(232, 117, 255, 0.196);
   color: #fff;
   width: 125px;
   border: none;
@@ -115,24 +117,56 @@ body {
   display: flex;
   gap: 2rem;
 }
-
-.mainopt button::before {
+.music,
+.detail {
+  color: rgb(232, 117, 255);
+  font-family: "Pixelify Sans", serif;
+  font-size: 1.3rem;
+}
+.detail i {
+  padding-right: 10px;
+}
+.detail div {
+  margin-bottom: 1rem;
+}
+.detail button {
+  margin-top: 2rem;
+}
+.detail select {
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  background-color: rgba(232, 117, 255, 0.196);
+  color: #fff;
+  border: 1px solid #222;
+  font-family: "Pixelify Sans", serif;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+.detail input {
+  width: 25px;
+  height: 25px;
+  margin-left: 1rem;
+}
+.mainopt button::before,
+.detail button::before {
   content: "";
   width: 20px;
   height: 20px;
   border-radius: 10px;
-  background: #d35f5f;
+  background: rgb(232, 117, 255);
   position: absolute;
   top: 0.7rem;
   left: 1rem;
   display: inline-block;
   transition: 0.5s;
 }
-.mainopt button:hover {
-  background: linear-gradient(to right, #ecd5d5, #d35f5f);
+.mainopt button:hover,
+.detail button:hover {
+  background: linear-gradient(to right, #ecd5d5, rgb(232, 117, 255));
   color: #ffffff;
 }
-.mainopt button:hover::before {
+.mainopt button:hover::before,
+.detail button:hover::before {
   left: 100px;
   background: #3a382e57;
 }
@@ -164,7 +198,7 @@ body {
   transition: 1s;
 
   position: absolute;
-  top: 180px;
+  top: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -258,6 +292,7 @@ body {
 #game h2 {
   text-align: center;
   font-family: "Pixelify Sans", serif;
+  color: rgb(232, 117, 255);
 }
 #game h2#highScore {
   margin-bottom: 2rem;
@@ -269,7 +304,7 @@ button {
 }
 .btns button {
   background-color: #fff;
-  color: #000;
+  color: rgb(232, 117, 255);
   cursor: pointer;
   z-index: 10000;
 }
@@ -310,19 +345,17 @@ button {
 /* ------------- */
 
 #displayTutorial {
-  font-size: 1rem;
-  /* color: rgb(0, 238, 255); */
+  font-size: 1.2rem;
+  font-family: "Pixelify Sans", serif;
   color: rgb(232, 117, 255);
-  max-width: 300px;
   text-align: center;
   margin-bottom: 1.5rem;
-
-  opacity: 0;
+  opacity: 1;
   animation: fadeOut 6s;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 @keyframes fadeOut {

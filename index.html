@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,20 +35,62 @@
       <div class="blur hidden">
         <div class="options">
           <img src="./images/mario.png" alt="mario" class="small" />
-          <h1>Mario Chasing Coins</h1>
+          <h1 style="color: rgb(232, 117, 255)">Mario Chasing Coins</h1>
           <div class="mainopt">
             <button class="play" id="play">Play</button>
             <button class="option">Options</button>
             <button class="quitt" onclick="window.close()">Quit</button>
           </div>
+          <div class="detail hidden">
+            <div
+              class="sound"
+              id="sound"
+              style="display: grid; grid-template-columns: 50px 70px 100px"
+            >
+              <i class="fa-solid fa-volume-high"></i>
+              <span>Sound</span>
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                style="accent-color: rgb(232, 117, 255)"
+                checked
+              />
+            </div>
+            <div
+              class="music"
+              id="music"
+              style="display: grid; grid-template-columns: 50px 70px 100px"
+            >
+              <i class="fa-solid fa-music"></i>
+              <span>Music</span>
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                checked
+                style="accent-color: rgb(232, 117, 255)"
+              />
+            </div>
+            <div style="display: grid; grid-template-columns: 50px 70px 150px">
+              <i class="fa-solid fa-turn-up"></i>
+              <span>Level</span>
+              <select class="level-select" id="level">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+            <button class="back">Back</button>
+          </div>
         </div>
       </div>
     </div>
-    <div id="game">
+    <div id="game" class="hidden">
       <h2 id="displayScore"></h2>
       <h2 id="highScore"></h2>
 
-      <div class="canvas-container hidden">
+      <div class="canvas-container">
         <div id="gameOver">
           <h1 class="game-over-text">Game Over</h1>
           <div class="btns">
