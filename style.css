@@ -29,7 +29,7 @@ body {
   justify-content: center;
   flex-direction: column;
 
-  background-color: #111;
+  background-color: #000;
   color: white;
 
   /* prevent swipe down to refresh on mobile */
@@ -50,6 +50,11 @@ body {
 .main {
   display: grid;
   place-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
 }
 .blur {
   position: fixed;
@@ -59,8 +64,12 @@ body {
   place-items: center;
   height: 100%;
   width: 100%;
-  background-color: #11111142;
-  backdrop-filter: blur(4px);
+  background-color: #11111168;
+  backdrop-filter: blur(10px);
+}
+.zoom {
+  transition: transform 0.5s ease; /* Smooth scaling transition */
+  animation: zoom 1s ease-in-out forwards;
 }
 
 .options {
@@ -69,9 +78,12 @@ body {
   background-color: #0d0b0bad;
   border-radius: 20px;
   padding: 20px 60px;
+  /* animation: fadeIn 2s ease-in-out; */
 }
 .options h1 {
   margin: 2rem 0;
+  font-family: "Pixelify Sans", serif;
+  font-size: 2.4rem;
 }
 .mainopt {
   display: flex;
@@ -96,6 +108,7 @@ body {
   cursor: pointer;
   transition: 0.3s;
   position: relative;
+  font-family: "Pixelify Sans", serif;
 }
 
 .mainopt button::before {
@@ -167,6 +180,22 @@ body {
   color: rgb(245, 210, 255);
   animation: blink1 1s step-start 0s infinite,
     blink2 2.2s step-start 0s infinite, blink3 2.8s step-start 0s infinite;
+}
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes blink1 {

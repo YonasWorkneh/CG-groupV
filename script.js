@@ -1,4 +1,129 @@
+// draw background with night vibes
+
+const canvas = document.getElementById("pixelCanvas");
+const ctx = canvas.getContext("2d");
+
+// Set canvas to full screen
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Helper function to draw a rectangle for "pixels"
+function drawPixel(x, y, size, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, size, size);
+}
+
+// Flood fill algorithm for the background
+function floodFill(x, y, size, getColor) {
+  const stack = [[x, y]];
+  const visited = new Set();
+
+  while (stack.length) {
+    const [currentX, currentY] = stack.pop();
+    const key = `${currentX},${currentY}`;
+
+    if (visited.has(key)) continue;
+    visited.add(key);
+
+    const color = getColor(currentX, currentY);
+    if (color) drawPixel(currentX, currentY, size, color);
+
+    const neighbors = [
+      [currentX - size, currentY],
+      [currentX + size, currentY],
+      [currentX, currentY - size],
+      [currentX, currentY + size],
+    ];
+
+    for (const [nx, ny] of neighbors) {
+      if (
+        nx >= 0 &&
+        nx < canvas.width &&
+        ny >= 0 &&
+        ny < canvas.height &&
+        !visited.has(`${nx},${ny}`)
+      ) {
+        stack.push([nx, ny]);
+      }
+    }
+  }
+}
+
+// Background color function for a black sky
+function blackSkyColor() {
+  return "#000000"; // Black background for the night sky
+}
+
+// Moon drawing
+function drawMoon(x, y, radius, size) {
+  floodFill(x, y, size, (px, py) => {
+    const distance = Math.sqrt((px - x) ** 2 + (py - y) ** 2);
+    if (distance <= radius) {
+      const intensity = 1 - distance / radius;
+      return `rgba(255, 255, 200, ${intensity})`;
+    }
+    return null;
+  });
+}
+
+// Star drawing
+function drawStar(x, y, size) {
+  drawPixel(x, y, size, "white");
+}
+
+// Pixelated birds
+function drawBird(x, y, size) {
+  const birdPattern = [
+    [0, 1],
+    [1, 0],
+    [2, 1],
+  ];
+  birdPattern.forEach(([dx, dy]) => {
+    drawPixel(x + dx * size, y + dy * size, size, "#FFFFFF"); // White birds
+  });
+}
+
+// Main draw function
+function draw() {
+  const pixelSize = 2;
+
+  // Fill the background with black sky
+  floodFill(0, 0, pixelSize, blackSkyColor);
+
+  // Draw the moon
+  drawMoon(canvas.width * 0.8, canvas.height * 0.2, 80, pixelSize);
+
+  // Draw stars
+  for (let i = 0; i < 30; i++) {
+    const starX = Math.random() * canvas.width;
+    const starY = Math.random() * canvas.height * 0.4;
+    drawStar(starX, starY, pixelSize);
+  }
+
+  // Draw birds
+  const birdPositions = [
+    [100, 150],
+    [200, 100],
+    [300, 120],
+    [400, 140],
+    [500, 90],
+  ];
+  birdPositions.forEach(([x, y]) => drawBird(x, y, pixelSize));
+}
+
+draw();
+
+// play opennning mario classic
+const audio = document.getElementById("mario");
+document.addEventListener("click", () => {
+  audio.play();
+});
+
 window.onload = () => {
+  setTimeout(() => {
+    document.querySelector(".blur").classList.remove("hidden");
+  }, 1000);
+
   function playGame() {
     // load sounds
     let coinSound = new Audio("./sounds/coin-sound.mp3");
