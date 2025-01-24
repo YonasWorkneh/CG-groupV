@@ -8,14 +8,48 @@
       content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0"
     />
     <title>Mario chasing coins</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪱</text></svg>">
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪱</text></svg>"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <h2 id="displayScore"></h2>
 
-    <div class="canvas-container">
+    <div class="main">
+      <div>
+        <img src="/images/mario.png" alt="mario" class="zoom" />
+      </div>
+      <div class="blur">
+        <div class="options">
+          <img src="/images/mario.png" alt="mario" class="small" />
+          <h1>Mario Chasing Coins</h1>
+          <div class="mainopt">
+            <button class="play">Play</button>
+            <button class="option">Options</button>
+            <button class="quitt" onclick="window.close()">Quit</button>
+          </div>
+          <div class="detail hidden">
+            <p class="single">
+              Single Player <i class="fa-solid fa-check"></i>
+            </p>
+            <p class="multi">Multi-Player <i class=""></i></p>
+            <span class="name__input player-1 hidden"
+              >Player 1 <input type="text" name="name" id="" placeholder="name"
+            /></span>
+            <span class="name__input player-2 hidden"
+              >Player 2 <input type="text" name="name" id="" placeholder="name"
+            /></span>
+            <p class="music">Music <i class=""></i></p>
+            <button class="back">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="canvas-container hidden">
       <div id="gameOver">
         <h1 class="game-over-text">Game Over</h1>
         <button id="playButton">Play</button>
@@ -26,7 +60,7 @@
       </canvas>
     </div>
     <br /><br />
-    <p id="displayTutorial">
+    <p id="displayTutorial" class="hidden">
       use Arrow Keys or WASD Keys on Desktop / Swipe on Mobile
     </p>
     <script src="./swiped-events.js"></script>
