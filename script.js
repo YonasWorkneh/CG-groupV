@@ -114,10 +114,10 @@ function draw() {
 draw();
 
 // play opennning mario classic
-const audio = document.getElementById("mario");
-document.addEventListener("click", () => {
-  audio.play();
-});
+// const audio = document.getElementById("mario");
+// document.addEventListener("click", () => {
+//   audio.play();
+// });
 
 window.onload = () => {
   setTimeout(() => {
@@ -125,6 +125,11 @@ window.onload = () => {
   }, 1000);
 
   function playGame() {
+    // display highscore
+    const highscore = localStorage.getItem("highScore") || 0;
+    document.querySelector(
+      "#highScore"
+    ).textContent = `High Score : ${highscore}`;
     // load sounds
     let coinSound = new Audio("./sounds/coin-sound.mp3");
     let budgieSound = new Audio("./sounds/budgie-sound.mp3");
@@ -302,10 +307,12 @@ window.onload = () => {
         // clear canvas
         context.clearRect(0, 0, canvasSize, canvasSize);
         const highScore = localStorage.getItem("highScore") || 0;
+        console.log(highScore);
         if (score > +highScore) localStorage.setItem("highScore", score);
         console.log(+highScore);
-        document.querySelector("#highScore").innerHTML =
-          "high Score: " + score > +highScore ? score : highScore;
+        document.querySelector("#highScore").textContent = `High score: ${
+          score > +highScore ? score : highScore
+        }`;
         // display game over
         gameOver.style.display = "flex";
         // play bugie game over sound
@@ -340,6 +347,7 @@ window.onload = () => {
   // PLAY GAME BUTTON
   const playButton = document.getElementById("play");
   playButton.addEventListener("click", () => {
+    // audio.pause();
     document.querySelector(".canvas-container").classList.remove("hidden");
     document.querySelector(".main").classList.add("hidden");
     playGame();
@@ -352,6 +360,7 @@ window.onload = () => {
 
   const main = document.getElementById("menu");
   main.addEventListener("click", () => {
+    // audio.play();
     document.querySelector(".canvas-container").classList.add("hidden");
     document.querySelector(".main").classList.remove("hidden");
   });

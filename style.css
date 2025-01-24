@@ -171,6 +171,7 @@ body {
   flex-direction: column;
   padding: 1rem;
   padding-left: 150px;
+  z-index: 1000;
   /* background: red; */
 }
 
@@ -256,6 +257,7 @@ body {
 }
 #game h2 {
   text-align: center;
+  font-family: "Pixelify Sans", serif;
 }
 #game h2#highScore {
   margin-bottom: 2rem;
