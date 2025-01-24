@@ -301,6 +301,11 @@ window.onload = () => {
       function stuffToDoWhenGameOver() {
         // clear canvas
         context.clearRect(0, 0, canvasSize, canvasSize);
+        const highScore = localStorage.getItem("highScore") || 0;
+        if (score > +highScore) localStorage.setItem("highScore", score);
+        console.log(+highScore);
+        document.querySelector("#highScore").innerHTML =
+          "high Score: " + score > +highScore ? score : highScore;
         // display game over
         gameOver.style.display = "flex";
         // play bugie game over sound
@@ -333,10 +338,24 @@ window.onload = () => {
   }
 
   // PLAY GAME BUTTON
-  const playButton = document.getElementById("playButton");
+  const playButton = document.getElementById("play");
   playButton.addEventListener("click", () => {
+    document.querySelector(".canvas-container").classList.remove("hidden");
+    document.querySelector(".main").classList.add("hidden");
     playGame();
   });
+
+  const replay = document.getElementById("replay");
+  replay.addEventListener("click", () => {
+    playGame();
+  });
+
+  const main = document.getElementById("menu");
+  main.addEventListener("click", () => {
+    document.querySelector(".canvas-container").classList.add("hidden");
+    document.querySelector(".main").classList.remove("hidden");
+  });
+
   // play game on when user clicks enter/return on keyboard
   document.addEventListener("keydown", (e) => {
     if (e.keyCode === 13) {

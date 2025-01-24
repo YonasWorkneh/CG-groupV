@@ -94,7 +94,8 @@ body {
   width: 12rem;
   height: 10rem;
 }
-.mainopt button {
+.mainopt button,
+.btns button {
   display: block;
   background: #ea3f3f2f;
   color: #fff;
@@ -109,6 +110,10 @@ body {
   transition: 0.3s;
   position: relative;
   font-family: "Pixelify Sans", serif;
+}
+.btns {
+  display: flex;
+  gap: 2rem;
 }
 
 .mainopt button::before {
@@ -138,7 +143,6 @@ body {
 }
 
 .canvas-container {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,8 +150,9 @@ body {
   width: 600px;
   height: 600px;
   /* actual canvas color */
-  background: #e3e3e3af;
+  background: #141212af;
   border-radius: 24px;
+  border: 1px solid #222;
   padding: 1rem;
 }
 
@@ -221,30 +226,6 @@ body {
   }
 }
 
-#playButton {
-  position: relative;
-  z-index: 10;
-}
-
-#playButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-weight: 900;
-  font-size: 1.05rem;
-  text-transform: uppercase;
-  padding: 1.05rem 2.65rem;
-  border-radius: 1rem;
-  background-color: rgb(244, 247, 252);
-  color: rgb(90, 92, 89);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  border: none;
-  cursor: pointer;
-  transition: 0.4s;
-  animation: upAndDown 1s ease-in 0s infinite;
-}
-
 @keyframes upAndDown {
   50% {
     transition: 1s;
@@ -265,13 +246,30 @@ body {
   position: relative;
   /* hide canvas color */
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.445);
+  background: rgba(21, 20, 20, 0.774);
 }
-
+#game {
+  position: fixed;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+#game h2 {
+  text-align: center;
+}
+#game h2#highScore {
+  margin-bottom: 2rem;
+}
 button {
   width: 50px;
   height: 30px;
   margin-bottom: 5px;
+}
+.btns button {
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  z-index: 10000;
 }
 
 /* ------------- */
